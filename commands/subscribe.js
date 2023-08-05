@@ -15,14 +15,14 @@ module.exports = {
             description: 'The Category you want to view.',
             required: true,
             type: 3,
-            autocomplete: true // This enables autocomplete
+            autocomplete: true,
         },
         {
             name: 'product',
             description: 'Select a product from the category',
             type: 3,
             required: true,
-            autocomplete: true // This enables autocomplete
+            autocomplete: true,
         }
     ],
 
@@ -31,18 +31,14 @@ module.exports = {
     const category = interaction.options.getString('category');
     if(category) {
         const products = await Stock.findAll({ where: { category: category } });
-
         return products.map((product) => {
             return { name: product.name, value: product.orderLink};
         });
     } else {
-        const categories = await Stock.findAll({ attributes: ['category'], group: ['category'], }); // Get all the categories from the database
-        const categoryOptions = categories.map((category) => ({
-            name: category.category,
-            value: category.category,
-        }));
-
-        return [...categoryOptions] // Combine the two arrays
+        const categories = await Stock.findAll({ attributes: ['category'], group: ['category'], });
+        return categories.map((category) => {
+            return { name: category.category, value: category.category};
+        });
     }
   },
 

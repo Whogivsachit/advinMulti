@@ -9,11 +9,6 @@ module.exports = {
     description: 'Check the stock of a product, category, or all products.',
     type: CommandType.SLASH,
     guildOnly: true,
-    // cooldowns: {
-    //     type: CooldownTypes.perUser,
-    //     duration: "1 m",
-
-    // },
     options: [
         {
             name: 'category',

@@ -43,7 +43,10 @@ client.on("ready", async () => {
     new WOK({
       client,
       commandsDir: path.join(__dirname, 'commands'),
-      events: path.join(__dirname, 'events'),
+      events: {
+        // Where the events are stored
+        dir: path.join(__dirname, "events"),
+      },
       featuresDir: path.join(__dirname, 'features'),
       testServers: ['919740112391258112'],
       botOwners: ["202967961298927616"],
@@ -62,7 +65,6 @@ client.on("ready", async () => {
     });
     console.log(chalk.red(`Bot Ready and Signed in as ${client.user.tag}`));
     await sequelize.sync(); // Syncs the database with the models.
-
 });
 
 client.login(process.env.TOKEN)

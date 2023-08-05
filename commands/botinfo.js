@@ -7,7 +7,7 @@ module.exports = {
     category: "Info",
     aliases: ["botinfo", "info"],
     description: 'Shows bot specific information.',
-    type: CommandType.BOTH,
+    type: CommandType.SLASH,
     guildOnly: true,
 
     callback: ({ client, guild }) => {
