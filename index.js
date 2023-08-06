@@ -19,6 +19,7 @@ const sequelize = new Sequelize(process.env.DB, process.env.DBUSER, process.env.
 // Models for Sequelize
 const Stock = require('./models/stock')(sequelize, Sequelize.DataTypes);
 const Subscriptions = require('./models/subscriptions')(sequelize, Sequelize.DataTypes);
+const Settings = require('./models/settings')(sequelize, Sequelize.DataTypes);
 
 // Create a new client instance
 const client = new Client({
@@ -73,4 +74,5 @@ module.exports = {
   sequelize,
   Stock,
   Subscriptions,
+  Settings
 };
