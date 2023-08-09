@@ -46,11 +46,12 @@ module.exports = async (instance, client) => {
                 if(productInDatabase.inStock !== product.inStock) {
                     await Stock.update({ inStock: product.inStock }, { where: { orderLink: product.orderLink } });
                     console.log(`Updated stock for ${product.name} (${product.orderLink})`);
-                    if(product.inStock === true) return notifyUsers(product.orderLink);
+                    if(product.inStock === true) {
+                        notifyUsers(product.orderLink);
+                    } 
                 }
             }
         }
-        console.log("Finished pulling stock data from API.")
     }
 
 

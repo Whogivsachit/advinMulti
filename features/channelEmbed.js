@@ -9,16 +9,15 @@ module.exports = async (instance, client) => {
     const settings = await Settings.findOne({ where: { guild: "823715598336786443"} });
     const guildN = await client.guilds.fetch(settings.guild);
     const channelToSend = await guildN.channels.fetch(settings.stockmontiorchannel);
-    const timeFormat = `<t:${Math.floor(new Date().getTime() / 1000)}>`;
-    
+
+    async function updateEmbed() {
+	  const timeFormat = `<t:${Math.floor(new Date().getTime() / 1000)}>`;
     const embed = new EmbedBuilder()
     .setColor("#FF0000")
     .setDescription(`Current Stock for Advinservers Products\n If a product is in stock you can click the blue to order\n\n Last Update: ${timeFormat}`)
     .setTitle("AdvinServers Current Stock")
     .setTimestamp(new Date());
 
-
-    async function updateEmbed() {
         const products = await Stock.findAll();
         const categories = Array.from(new Set(products.map((product) => product.category)));
 
@@ -42,7 +41,6 @@ module.exports = async (instance, client) => {
             channelToSend.send({ embeds: [embed] });
         }
         });
-        console.log("Updated Stock Embed")
     }
 
     updateEmbed();
