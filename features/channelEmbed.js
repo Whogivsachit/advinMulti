@@ -1,4 +1,6 @@
 // Description: Update stock embed every 2 minutes
+// Static file for the channelEmbed feature
+
 const { Client, EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 require("dotenv/config");
@@ -24,6 +26,7 @@ module.exports = async (instance, client) => {
         categories.forEach((category) => {
             const productsInCategory = products.filter((product) => product.category === category).map((product) => 
             `${product.inStock ? `[${product.name}](https://clients.advinservers.com${product.orderLink})` : `${product.name}`}: $${product.price}`); // Get the products in the category and format them     
+            
             if (productsInCategory.length > 0) { // If there are products in the category, add them to the embed
               embed.addFields({
                 name: `**${category.replace(/-/g, ' ')}**`,
@@ -33,18 +36,16 @@ module.exports = async (instance, client) => {
           });
 
         channelToSend.messages.fetch({ limit: 1 }).then(messages => {
-        const lastMessage = messages.first();
-        if(!lastMessage) return channelToSend.send({ embeds: [embed] });
-        if(lastMessage.author.id === client.user.id) {
-            lastMessage.edit({ embeds: [embed] });
-        } else {
-            channelToSend.send({ embeds: [embed] });
-        }
+          const lastMessage = messages.first();
+          if(!lastMessage) return channelToSend.send({ embeds: [embed] });
+          if(lastMessage.author.id === client.user.id) {
+              lastMessage.edit({ embeds: [embed] });
+          } else {
+              channelToSend.send({ embeds: [embed] });
+          }
         });
     }
 
     updateEmbed();
     setInterval(updateEmbed, process.env.UPDATEINTERVAL);
-
-
 };

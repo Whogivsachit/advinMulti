@@ -18,6 +18,7 @@ module.exports = {
         "https://media.tenor.com/zgfNmnOdBDYAAAAM/blahaj-blahaj-gaming.gif",
         "https://media.tenor.com/YpHDXzEmkuMAAAAM/anime-girl-anime.gif",
         "https://media.tenor.com/fojvF1KWlMUAAAAC/pewdiepie-nword.gif"]
+    
     const randomBlahaj = blahaj[Math.floor(Math.random() * blahaj.length)]
 
     const embed = new EmbedBuilder()

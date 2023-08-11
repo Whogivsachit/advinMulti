@@ -1,4 +1,2 @@
 node_modules
 .env
-events/interactionCreate/logInteraction.js
-events/messageCreate/logMessages.js

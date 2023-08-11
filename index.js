@@ -32,9 +32,7 @@ const client = new Client({
     partials: [Partials.Channel],
     presence: {
       status: "online",
-      activities: [
-        { name: "AdvinServers Stock", type: ActivityType.Watching, url: "https://advinservers.com"}
-      ],
+      activities: [ { name: "AdvinServers Stock", type: ActivityType.Watching, url: "https://advinservers.com"} ],
     }
 });
 
@@ -44,10 +42,7 @@ client.on("ready", async () => {
     new WOK({
       client,
       commandsDir: path.join(__dirname, 'commands'),
-      events: {
-        // Where the events are stored
-        dir: path.join(__dirname, "events"),
-      },
+      events: { dir: path.join(__dirname, "events"), },
       featuresDir: path.join(__dirname, 'features'),
       testServers: ['919740112391258112'],
       botOwners: ["202967961298927616"],
@@ -65,7 +60,7 @@ client.on("ready", async () => {
       ],
     });
     console.log(chalk.red(`Bot Ready and Signed in as ${client.user.tag}`));
-    await sequelize.sync(); // Syncs the database with the models.
+    await sequelize.sync(); // Syncs the database
 });
 
 client.login(process.env.TOKEN)
