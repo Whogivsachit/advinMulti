@@ -1,5 +1,5 @@
-// Description: its just a blahaj command
-const { Client, EmbedBuilder } = require("discord.js");
+// Description: its just a blahaj command... Idk why I added it but I thought it would be funny. One of these is not like the others.
+const { EmbedBuilder } = require("discord.js");
 const { CommandType } = require("wokcommands");
 
 module.exports = {

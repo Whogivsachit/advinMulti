@@ -10,5 +10,4 @@ module.exports = (guild) => {
         stockmontiorchannel: "none",
         updateinterval: 0,
     });
-    
 };

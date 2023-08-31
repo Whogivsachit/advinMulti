@@ -1,8 +1,8 @@
-// Description: Pulls stock data from the API and stores it in the database.
+// Description: Pulls stock data from the API and stores it in the database. & Notifies users when a product is in stock.
 const axios = require("axios");
 require("dotenv/config");
-const { Stock, Subscriptions, Settings } = require("../index.js");
-module.exports = async (instance, client) => {
+const { Stock, Subscriptions } = require("../index.js");
+module.exports = async (client) => {
 
     // Description: Notifies users when a product is in stock.
     async function notifyUsers(orderLink) {

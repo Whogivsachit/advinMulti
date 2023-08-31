@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+// Description: unsubscribe from a product
 const { CommandType } = require("wokcommands");
 const { Subscriptions } = require("../index.js");
 require("dotenv/config");

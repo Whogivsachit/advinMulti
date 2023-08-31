@@ -1,5 +1,5 @@
-const { Client, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { CommandType, CooldownTypes } = require("wokcommands");
+// Description: Subscribe to receive notifications for a product
+const { CommandType } = require("wokcommands");
 const { Stock, Subscriptions } = require("../index.js");
 require("dotenv/config");
 

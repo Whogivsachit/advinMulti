@@ -1,8 +1,10 @@
-const { Client, EmbedBuilder } = require("discord.js");
-const { CommandType, CooldownTypes } = require("wokcommands");
+// Description: View the stock of the provided category/filter
+const { EmbedBuilder } = require("discord.js");
+const { CommandType } = require("wokcommands");
 const { Stock } = require("../index.js");
 require("dotenv/config");
 
+// Generate the valid categories for the autocomplete
 const generateValidCategories  = async () => {
     const categories = await Stock.findAll({ attributes: ['category'], group: ['category'], }); // Get all the categories from the database
     const additional = [{ name: "In Stock", value: "instock" }, { name: "All Stock", value: "allstock" }]; // Add the allstock and instock options

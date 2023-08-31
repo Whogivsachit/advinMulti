@@ -1,5 +1,5 @@
-// Description: Shows bot specific information.
-const { Client, EmbedBuilder, PermissionsBitField  } = require("discord.js");
+// Description: Edit settings related to this guild
+const { PermissionsBitField  } = require("discord.js");
 const { CommandType } = require("wokcommands");
 const { Settings } = require("../index.js");
 require("dotenv/config");

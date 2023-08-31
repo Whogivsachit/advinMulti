@@ -1,6 +1,5 @@
-// Description: Ping pong command
+// Description: Uwuifies some text
 const { CommandType } = require("wokcommands");
-
 module.exports = {
   category: "Fun",
   aliases: ["uwu","^v^"],

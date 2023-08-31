@@ -1,5 +1,5 @@
 // Description: Shows bot specific information.
-const { Client, EmbedBuilder } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { CommandType } = require("wokcommands");
 require("dotenv/config");
 
@@ -22,7 +22,7 @@ module.exports = {
                 { name: `Creator`, value: `Whogi`, inline: true },
                 { name: `Servers`, value: `${client.guilds.cache.size}`, inline: true },
                 { name: `Users`, value: `${guild.memberCount}`, inline: true },
-                { name: `Website`, value: `[Chitterengine](https://chitterengine.com)`, inline: true }
+                { name: `Website`, value: `[Chit.sh](https://chit.sh)`, inline: true }
             )
             .setFooter({
                 text: `${process.env.PNAME} Information`,

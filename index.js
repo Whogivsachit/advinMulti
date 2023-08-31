@@ -1,4 +1,4 @@
-const { Client, IntentsBitField, Partials, REST, Routes, ActivityType } = require("discord.js");
+const { Client, IntentsBitField, Partials, ActivityType } = require("discord.js");
 const WOK = require('wokcommands');
 const path = require('path');
 const chalk = require('chalk');

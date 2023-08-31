@@ -7,6 +7,6 @@ module.exports = {
   type: CommandType.SLASH,
 
   callback: ({ client, guild, interaction }) => {
-    interaction.reply({ embeds: [{ description: `I'm still Alive`}], fetchReply: true });// Send loading embed
+    interaction.reply({ embeds: [{ description: `I'm still Alive`}], fetchReply: true });
   },
 }

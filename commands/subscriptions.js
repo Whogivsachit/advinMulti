@@ -1,3 +1,4 @@
+// Description: List Subscribed Products
 const { EmbedBuilder } = require("discord.js");
 const { CommandType } = require("wokcommands");
 const { Subscriptions } = require("../index.js");

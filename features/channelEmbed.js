@@ -1,11 +1,12 @@
 // Description: Update stock embed every 2 minutes
-// Static file for the channelEmbed feature
+// Notice: The majority of this code is PER-GUILD and will need to be modified to work with your community.
+// Notice #2: Its completely safe to just remove this entire file if you dont want this functionality.
 
-const { Client, EmbedBuilder } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 require("dotenv/config");
 const { Stock, Settings } = require("../index.js");
-module.exports = async (instance, client) => {
+module.exports = async (client) => {
 
     // Globals
     const settings = await Settings.findOne({ where: { guild: "823715598336786443"} });
