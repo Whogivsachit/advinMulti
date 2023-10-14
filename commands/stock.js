@@ -29,8 +29,8 @@ module.exports = {
     ],
 
     // Fill in categories Automatically
-    autocomplete: async (command, argument, interaction) => {
-        return await generateValidCategories ();
+    autocomplete: async () => {
+        return await generateValidCategories();
     },
 
     callback: async ({ interaction }) => {

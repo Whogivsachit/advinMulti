@@ -13,21 +13,20 @@ module.exports = {
       required: true,
     },
   ],
-  callback: async ({ client, guild, interaction }) => {
+  callback: async ({ interaction }) => {
     await interaction.deferReply()
-    let text = interaction.options.getString('message')
+    
     const getRandomUwuFace = () => {
-        const uwuFaces = ['(・`ω´・)', ';;w;;', 'owo', 'UwU', '>w<', '^w^']
-        return uwuFaces[Math.floor(Math.random() * uwuFaces.length)]
-      }
+      const uwuFaces = ['(・`ω´・)', ';;w;;', 'owo', 'UwU', '>w<', '^w^'];
+      return uwuFaces[Math.floor(Math.random() * uwuFaces.length)];
+    };
+
+    let text = interaction.options.getString('message');
+    text = text.replace(/(?:r|l)/gi, 'w');
+    text = text.replace(/(?:ove)/gi, 'uv');
+    text = text.replace(/n([aeiou])/gi, 'ny$1');
+    text += ' ' + getRandomUwuFace();
   
-      text = text.replace(/(?:r|l)/g, 'w')
-      text = text.replace(/(?:R|L)/g, 'W')
-      text = text.replace(/n([aeiou])/g, 'ny$1')
-      text = text.replace(/N([aeiou])/g, 'Ny$1')
-      text = text.replace(/ove/g, 'uv')
-      text = text + ' ' + getRandomUwuFace()
-  
-      interaction.editReply({ embeds: [{ description: text}], fetchReply: true });// Send loading embed
+    interaction.editReply({ embeds: [{ description: text}], fetchReply: true });
   },
 }
