@@ -25,6 +25,9 @@ module.exports = (Sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         }
+
+    }, {
+        timestamps: true,
     });
     return Stock;
 };
