@@ -23,7 +23,7 @@ module.exports = async (instance, client) => {
         const channelToSend = await guildN.channels.fetch(settings.stockmontiorchannel);
         const createdAt = Math.floor(new Date(product.createdAt).getTime() / 1000);
         const updatedAt = Math.floor(new Date(product.updatedAt).getTime() / 1000);
-        
+ 
         switch (type) {
             case "update":
                 var embed = new EmbedBuilder()
@@ -44,6 +44,17 @@ module.exports = async (instance, client) => {
                 .setColor(5763719)
                 channelToSend.send({ content: '<@&1164761419011604491>',  embeds: [embed] });
             break;
+            case "change":
+                const productInDatabase = await Stock.findOne({ where: { orderLink: product.orderLink } });
+				const nprice = Math.round(product.price);
+                
+                var embed = new EmbedBuilder()
+                .setTitle(`**${product.category.split('-')[0]} -> ${product.name}** has been updated!`)
+                .setTimestamp(new Date())
+                .setDescription(`**__OLD:__** \`\`\`Price: $${productInDatabase.price}\n${productInDatabase.description}\`\`\`\n **__NEW:__** \`\`\`Price: $${nprice}\n${product.description}\`\`\`\n        `)
+                .setURL(`https://clients.advinservers.com${product.orderLink}`)
+                .setColor(5793266)
+                channelToSend.send({ embeds: [embed] });
         }
 
     }
@@ -58,10 +69,10 @@ module.exports = async (instance, client) => {
         }).catch(error => {
     		console.log("An error occurred on pull-stock pullstockFunc:", error);
 		});
-        const products = response.data.body;
 
         if(response.data.status !== 200) return console.log("An error occurred while pulling stock data from API:", response.status, response.data);
-            
+        const products = response.data.body;
+ 
         for(const product of products) {
             const productInDatabase = await Stock.findOne({ where: { orderLink: product.orderLink } }); // Check if the product is already in the database.
 
@@ -71,7 +82,7 @@ module.exports = async (instance, client) => {
                     category: product.category,
                     name: product.name,
                     description: product.description,
-                    price: product.price,
+                    price: Math.round(product.price),
                     inStock: product.inStock,
                     orderLink: product.orderLink,
                 });
@@ -87,6 +98,19 @@ module.exports = async (instance, client) => {
                     if(product.inStock === true) { // If the product is in stock, notify users.
                        notifyUsers(product.orderLink);
                     } 
+                }
+
+                if(Math.round(productInDatabase.price) !== Math.round(product.price) || productInDatabase.description !== product.description) {
+                    Stock.update({
+                        category: product.category,
+                        name: product.name,
+                        description: product.description,
+                        price: Math.round(product.price),
+                        inStock: product.inStock,
+                        orderLink: product.orderLink,
+                    }, { where: { orderLink: product.orderLink } });
+                    updateChannel(product, product.inStock, "change");
+                    console.log(`Updated ${product.name} (${product.orderLink})`);
                 }
             }
         }
