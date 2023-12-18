@@ -19,7 +19,7 @@ module.exports = {
         },
         {
             name: 'product',
-            description: 'Select a product from the category',
+            description: 'Select a product from the category.',
             type: 3,
             required: true,
             autocomplete: true,
