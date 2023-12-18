@@ -11,7 +11,7 @@ module.exports = {
   options: [
     {
         name: "channel",
-        description: "The channel to echo out to",
+        description: "The channel to send the message to",
         required: true,
         type: 7,
     },
@@ -23,7 +23,7 @@ module.exports = {
     },
     {
         name: "embed",
-        description: "Whether to send the message as an embed",
+        description: "Sends the message as a Discord embed",
         required: false,
         type: 5,
     }
