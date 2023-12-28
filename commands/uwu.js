@@ -8,7 +8,7 @@ module.exports = {
   options: [
     {
       name: 'message',
-      description: 'The message you want to uwuify',
+      description: 'The message you want to uwuify?',
       type: 3,
       required: true,
     },
